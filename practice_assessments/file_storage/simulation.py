@@ -61,6 +61,35 @@ class Server:
                     self.files.remove(dest)
         else:
             raise RuntimeError("File doesn't exist")
+    
+    def search(self,file):
+        # file is prefix ["Ba"]
+        # Find top 10 files starting with the provided prefix. 
+        # Order results by their size in descending order
+        # in case of a tie by file name.
+
+        prefix = file[0]
+        prefix_length = len(prefix)
+        matches = []
+        if self.is_server_empty() == True:
+            return []
+        
+        # search
+        for item in self.files:
+            if len(matches)==10:
+                break
+            elif prefix_length < len(item[0]):
+                if item[0][:prefix_length] == prefix:
+                    matches.append(item)
+        
+        # sort results filesize descending
+        sorted_files = sorted(matches, key=lambda x: (-int(x[1][:-2]), x[0]))
+
+        # make results in the right format
+        for i in range(len(matches)):
+            matches[i] = matches[i][0]
+            
+        return matches
 
 def simulate_coding_framework(list_of_lists):
     """
@@ -82,6 +111,11 @@ def simulate_coding_framework(list_of_lists):
             case "FILE_COPY":
                 server.copy(item)
                 result_list.append("copied " + item[0] + " to " + item[1])
+            case "FILE_SEARCH":
+                ans = server.search(item)
+                print(ans)
+                result_list.append("found " + str(ans).replace("'", ""))
         print(server.files)
+    print(result_list)
     return result_list
             
