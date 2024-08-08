@@ -1,6 +1,6 @@
 import unittest
 from unittest.mock import patch
-from simulation import simulate_coding_framework
+from .simulation import simulate_coding_framework
 
 class TestSimulateCodingFramework(unittest.TestCase):
 
