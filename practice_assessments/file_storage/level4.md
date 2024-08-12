@@ -61,3 +61,8 @@ Files now might have a specified time to live on the server. Implement extension
 - **ROLLBACK(timestamp)**
   - Rollback the state of the file storage to the state specified in the timestamp.
   - All ttls should be recalculated accordingly.
+
+My solution:
+  make a variable rollback_time
+  everytime search is called it would do timestamp > rollback_time (instead of date.now())
+  before this it would check that rollback exists, if not use date.now()
