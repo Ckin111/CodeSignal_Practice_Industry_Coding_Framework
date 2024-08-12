@@ -83,7 +83,7 @@ class Server:
                     matches.append(item)
         
         # sort results filesize descending
-        sorted_files = sorted(matches, key=lambda x: (-int(x[1][:-2]), x[0]))
+        sorted(matches, key=lambda x: (-int(x[1][:-2]), x[0]))
 
         # make results in the right format
         for i in range(len(matches)):

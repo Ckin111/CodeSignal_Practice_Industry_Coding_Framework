@@ -55,3 +55,10 @@ Files now might have a specified time to live on the server. Implement extension
 - **FILE_COPY_AT(timestamp, file_from, file_to)**
 - **FILE_SEARCH_AT(timestamp, prefix)**
   - Results should only include files that are still “alive”.
+
+My solution:
+1. add a 3rd value in the arr for ttl
+arr will now be [bob.txt,'123kb','ttl']
+
+2. take the ttl seconds and make a timestamp of right now + ttl seconds
+when returning it from search function: if the timestamp > now, I'll return 
